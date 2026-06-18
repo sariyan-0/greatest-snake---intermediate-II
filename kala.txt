@@ -1,0 +1,6 @@
+printer 25 90000000
+mouse 180 600000
+scanner 50 5000000
+monitor 12 8000000
+speaker 120 1400000
+keyboard 80 800000
