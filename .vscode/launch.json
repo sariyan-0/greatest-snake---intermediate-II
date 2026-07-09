@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: module_pillow",
+            "type": "python",
+            "request": "launch",
+            "module": "modules.module_pillow",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true
+        }
+    ]
+}

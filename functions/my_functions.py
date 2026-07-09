@@ -253,3 +253,4 @@ def cleaning(lst_word_x):
         lst_clean.append(g)
 
     return lst_clean
+
