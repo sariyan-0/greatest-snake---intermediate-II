@@ -83,11 +83,11 @@ import random
 
 def hello_decorator(function):
 
-    def wrapper():
+    def wrapper(*args, **kwargs):
         lst_h = ["Hello\n", "Hi\n", "Good morning\n"]
         h = random.choice(lst_h)
 
-        original = function()
+        original = function(*args, **kwargs)
 
         lst_b = ["\nBye.", "\nGoodbye.", "\nSee you soon."]
         b = random.choice(lst_b)
@@ -111,25 +111,33 @@ def hello_decorator(function):
 # Q1: Run time decorator
 
 def runtime_decorator(function):
-    
-    def wrapper():
+    def wrapper(*args, **kwargs):
         start = time.time()
-        original = function()
+        original = function(*args, **kwargs)  
+        #          Tuble unpacking,     Dict unpacking
         end = time.time()
         duration = round(end - start, 2)
-        improved = f"the result is: {original}\nThe function took {duration} seconds to run."
+        improved = f"The result is: {original}\nTakes: {duration} seconds."
         return improved
     return wrapper
 
 
-# @runtime_decorator
-# def sum_num():
-#     total = 0
-#     for item in range(1, 100000001):
-#         total += item
-#     return total
+@runtime_decorator
+def sum_num(x, y):
+    total = 0
+    for item in range(x, y +1):
+        total += item
+    return total
 
-# a = sum_num()
+    
+@runtime_decorator
+def is_prime(x):
+    if x % 2 == 0:
+        return "even"
+    else:
+        return "odd"
+
+# a = sum_num(y=5000, x=100)
 # print(a)
 #################################################################################
 # Q2: Loop / Repeat decorator
@@ -176,8 +184,59 @@ def loop_decorator(function):
 d = {}  # or      txt       sql     excel
 
 
-def sum_num():
-    total = 0
-    for item in range(1, 1001):
-        total += item
-    return total
+# def sum_num():
+#     total = 0
+#     for item in range(1, 1001):
+#         total += item
+#     return total
+#################################################################################
+#
+# Functions with unknown number of arguments
+#
+def sum_numbers(*args):             # <args> is a tuple
+    result = 0
+    for item in args:
+        result += item
+    return result
+
+# s = sum_numbers(10, 50)
+# print(s)
+#################################################################################
+#
+# Functions with unknown keyboard arguments
+#
+def find_top(**kwargs):            # <kwargs> is a dictionary
+    maxi = -1
+    for k, v in kwargs.items():
+        if v > maxi:
+            maxi = v
+            top = k
+    return top
+
+# a = find_top(printer = 1400, monitor = 1200, mouse = 100, keyboard = 200)
+# print(a)
+
+#################################################################################
+# Default prameters
+def azimi(x, y=1):      # Default follow non-default
+    z = x / y
+    return z
+
+# a = azimi(5)
+# print(a)
+# b = azimi(5, 2) 
+# print(b)
+# ----------------------
+def azimi(x, y):
+    z = x / y
+    return z
+
+
+# a = azimi(x=2, y=5)     # Keyword arguments
+# print(a)
+# b = azimi(5, x=2)       # Error: Multiple value for X
+# print(b)
+# c = azimi(5, y=2)       # OK
+# print(c)
+# d = azimi(x=5, 2)       # Error: Keywords must follow positions
+# print(d)
