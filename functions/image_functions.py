@@ -1,6 +1,8 @@
 ############################### Image Processing Functions ###############################
 from PIL import Image
 import random
+import numpy as np
+from matplotlib import pyplot
 
 
 
@@ -121,13 +123,14 @@ def grb2gray(rgb_pixels):
 
 
 def get_hist_data(gray_pixels):
-    """Count how many pixels have each grayscale value from 0 to 255."""
-    lst_hist = [0] * 256
-
-    for p in gray_pixels:
-        lst_hist[p] += 1
-
-    return lst_hist
+    lst = []
+    for gray in range(256):
+        c = 0
+        for p in gray_pixels:
+            if p == gray:
+                c += 1
+        lst.append(c)
+    return lst
 
 
 def calc_ratio(lst_hist, threshold):
@@ -141,14 +144,11 @@ def calc_ratio(lst_hist, threshold):
     return bright_pixels / total_pixels
 
 
-def show_histogram(lst_hist):
-    """Display grayscale histogram data as a bar chart."""
-    from matplotlib import pyplot
+def show_histogram(hist_data):
+    x = np.array(range(256))
+    y = np.array(hist_data)
 
-    pyplot.bar(range(256), lst_hist)
-    pyplot.xlabel("Gray value")
-    pyplot.ylabel("Number of pixels")
-    pyplot.title("Grayscale Histogram")
+    pyplot.bar(x, y)
     pyplot.show()
 
 # def add_noise(pixels):

@@ -36,10 +36,13 @@ if family == 'ORANGE':
         print('Carrot')
 elif family == 'RED':
     # Logic ...
-    if 'some':
-        print('Tomato')
+    if 'histogram is sharp':
+        print('Apple')
     else:
-        print('red_KALAM')
+        if 'over 150 is large':
+            print('Apple')
+        else:
+            print('Strawberry')
 ###########################################################
 #
 #                         Type     >>>     for each Type
