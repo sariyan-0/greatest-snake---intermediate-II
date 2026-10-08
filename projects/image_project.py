@@ -1,17 +1,18 @@
 ################### Image Project #########################
 from PIL import Image
+from matplotlib import pyplot
 from functions.image_functions import *
 
-w, h, pixels = load_image('images/pumpkin/test_2.webp')
+# w, h, pixels = load_image('images/pumpkin/test_2.webp')
 # print(pixels[:10])
 
-no_bg_pixs = remove_bg(pixels)
+# no_bg_pixs = remove_bg(pixels)
 # print(no_bg_pixs[:20])
 
-r_, g_, b_ = rgb_averages(no_bg_pixs)
+# r_, g_, b_ = rgb_averages(no_bg_pixs)
 # print(r_, g_, b_)
 #
-family = detect_color_family(r_, g_, b_)
+# family = detect_color_family(r_, g_, b_)
 ###########################################################
 # Assume we have an ORANGE family
 #
@@ -19,30 +20,30 @@ family = detect_color_family(r_, g_, b_)
 #       orange  ===>
 #                      \ Carrot
 #
-gray_pixes = rgb2gray(no_bg_pixs)
+# gray_pixes = rgb2gray(no_bg_pixs)
 # print(gray_pixes[:10])
 #
-lst_hist = get_hist_data(gray_pixes)
+# lst_hist = get_hist_data(gray_pixes)
 # show_histogram(lst_hist)
 # ---------------------------------------------------------
 # Analyze Histograms
-family = "ORANGE"
-if family == 'ORANGE':
-    r = calc_ratio(lst_hist, 200)
+# family = "ORANGE"
+# if family == 'ORANGE':
+#     r = calc_ratio(lst_hist, 200)
     # print(r)
-    if r < 0.1:
-        print('Pumpkin')
-    else:
-        print('Carrot')
-elif family == 'RED':
+#     if r < 0.1:
+#         print('Pumpkin')
+#     else:
+#         print('Carrot')
+# elif family == 'RED':
     # Logic ...
-    if 'histogram is sharp':
-        print('Apple')
-    else:
-        if 'over 150 is large':
-            print('Apple')
-        else:
-            print('Strawberry')
+#     if 'histogram is sharp':
+#         print('Apple')
+#     else:
+#         if 'over 150 is large':
+#             print('Apple')
+#         else:
+#             print('Strawberry')
 ###########################################################
 #
 #                         Type     >>>     for each Type
